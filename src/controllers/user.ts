@@ -41,6 +41,12 @@ export const updateUserById = async (req: Request, res: Response) => {
         .catch(err => res.status(500).json({ err: err, message: "No se ha podido actualizar el usuario" }))
 }
 
+export const getNotification = async (req: Request, res: Response) => {
+    await User.findOne({_id: req.params.id})
+        .then(data => res.status(200).json(data?.notifications))
+        .catch(err => res.status(500).json({ err: err, message: "No se ha podido borrar el usuario" }))
+}
+
 export const setNotification = async (req: Request, res: Response) => {
     await User.updateOne({ _id: req.params.id }, { $push: {notifications: req.body} })
         .then(data => { res.status(200).json(data) })
