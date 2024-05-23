@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors'
-import connectDB from './config'
+import { connectDB } from './config'
+import { initWS } from './ws';
 
 import User from './src/routes/user'; // Usuarios
 import Class from './src/routes/classes'; // Clases
@@ -18,4 +19,5 @@ app.listen(PORT, () => {
     console.log(`Servidor corriendo en ${PORT}`);
 });
 
-connectDB //conexión a la base de datos
+initWS()
+connectDB() //conexión a la base de datos

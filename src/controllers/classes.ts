@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
+import { v4 as uuidv4 } from "uuid";
 import Class from "../models/classes";
 
 export const createClass = async (req: Request, res: Response) => {
-    new Class(req.body).save()
+    const chatID = uuidv4()
+    const newClass = new Class({ ...req.body, chat: { chat_id: chatID, messages: [] } })
+    newClass.save()
         .then(data => res.status(200).json(data))
         .catch(err => res.status(500).json({err: err, message: "No se ha podido crear la clase"}))
 }
