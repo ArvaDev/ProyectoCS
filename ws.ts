@@ -1,3 +1,4 @@
+//Ejemplo de push
 import WebSocket, { Server } from 'ws';
 import http from 'http';
 import Class from './src/models/classes';
